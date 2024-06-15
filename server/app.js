@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const PollRoute = require('./api/routes/PollRoute');
+const authRoute = require('./api/routes/authRoute');
 const app = express();
 const path = require('path');
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use('/api/polls', PollRoute);
+app.use('/auth', authRoute);
 
 // Server Side Routing
 // If no API routes are hit, send the React app
