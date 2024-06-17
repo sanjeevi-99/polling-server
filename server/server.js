@@ -1,18 +1,19 @@
 const http = require('http');
 const app = require('./app');
-
+var cors = require('cors')
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
 console.log(process.env.MONGODB_URI);
 // connect to db
 require('./helpers/dbConnect');
+app.use(cors({ origin: '*' }));
 
 const server = http.createServer(app);
 
 const socketIO = require('socket.io')(server, {
   cors: {
-    origin: "http://localhost:3000"
+    origin: '*',
   }
 });
 
